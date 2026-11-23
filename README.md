@@ -1,84 +1,81 @@
-# GitHub Lens — 초급 GitHub 사용자 분석기
+# GitHub Lens
 
-HTML/CSS/vanilla JavaScript로 만든 정적 웹 프로젝트입니다. Flask, 서버 운영, npm 설치, 빌드, API 토큰이 필요 없습니다. 브라우저가 GitHub REST API의 공개 데이터를 직접 조회합니다.
+**GitHub API를 활용한 사용자 프로필 및 공개 저장소 조회 서비스**
 
-## 실행
+GitHub 아이디를 검색하면 사용자의 프로필과 공개 저장소를 한눈에 볼 수 있는 웹페이지입니다. HTML, CSS, JavaScript로 제작했으며 별도 서버나 API 토큰 없이 GitHub Pages에서 사용할 수 있습니다.
 
-압축을 풀고 `index.html`을 브라우저로 열어 사용자 이름을 검색하세요. 인터넷 연결과 JavaScript가 필요합니다. 로컬 파일의 네트워크 접근을 제한하는 브라우저에서는 아래 GitHub Pages 배포 후 사용하세요. 별도 개발 서버는 필수가 아닙니다.
+## 주요 기능
 
-## GitHub Pages 배포 — 웹 화면만 사용
+- **사용자 검색**: GitHub 아이디로 검색하거나 예시 사용자를 선택합니다.
+- **프로필 조회**: 사진, 이름, 소개, 팔로워, 팔로잉, 공개 저장소 수를 확인합니다.
+- **저장소 탐색**: 저장소 이름, 설명, 언어, 스타 수, 포크·보관 여부를 확인하고 GitHub 원본 페이지로 이동합니다.
+- **더 보기**: 최근 업데이트순으로 저장소를 30개씩 불러옵니다.
+- **상태 안내**: 로딩, 사용자 없음(404), 네트워크 오류, API 요청 제한을 안내하고 저장소 조회를 재시도할 수 있습니다.
+- **반응형 화면**: PC와 모바일 화면 크기에 맞춰 표시합니다.
 
-1. GitHub에 로그인하고 **New repository**를 눌러 `github-user-analyzer` 같은 이름의 **Public** 저장소를 만듭니다. README 추가를 선택하면 초기 브랜치가 생성됩니다.
-2. **Add file → Upload files**에서 이 폴더 안의 `index.html`, `styles.css`, `app.js`, `README.md`, `.nojekyll`을 업로드하고 **Commit changes**를 누릅니다. 폴더 자체나 ZIP을 올리지 마세요. 저장소 최상위에 `index.html`이 보여야 합니다.
-3. 숨김 파일 `.nojekyll`이 보이지 않으면 **Add file → Create new file**에서 파일명을 `.nojekyll`로 입력하고 빈 파일을 커밋합니다. 정적 파일을 그대로 제공하기 위한 파일입니다.
-4. 저장소의 **Settings → Pages → Build and deployment**로 이동합니다.
-5. **Source: Deploy from a branch**, **Branch: main**, **Folder: /(root)**를 선택하고 **Save**를 누릅니다. 기본 브랜치 이름이 다르면 실제 브랜치를 선택하세요.
-6. 배포가 끝나면 Pages에 표시되는 **Visit site**를 누릅니다. 일반적인 주소는 `https://본인아이디.github.io/github-user-analyzer/`입니다. **Actions** 탭에서 배포 진행 상황을 확인할 수 있습니다.
-7. 이후 같은 브랜치의 파일을 수정하고 커밋하면 자동으로 다시 배포됩니다.
+## 사용 방법
 
-설정에서 Pages가 보이지 않으면 저장소 관리자 권한과 조직 정책을 확인하세요. 배포 404는 `index.html`의 위치, 선택한 브랜치/폴더, Actions의 배포 결과를 확인합니다. 사용자 검색 404는 배포 오류가 아니라 해당 아이디가 없다는 뜻입니다.
+1. 검색창에 GitHub 아이디를 입력합니다. 예: `octocat`
+2. **사용자 검색** 버튼 또는 Enter 키를 누릅니다.
+3. 프로필과 저장소를 확인하고, 필요하면 **저장소 더 보기**를 누릅니다.
 
-## 기능과 파일
+프로필 주소 전체가 아닌 아이디만 입력하세요. 프로필의 공개 저장소 수는 전체 개수이며, 목록에는 현재 불러온 저장소가 표시됩니다.
 
-- 사용자 검색 및 octocat/torvalds 예시 검색
-- 사진, 이름, 소개, 팔로워·팔로잉·공개 저장소 수
-- 소유한 공개 저장소 목록, 설명, 언어, 스타 수, 포크/보관 표시
-- 최근 업데이트순 30개 단위 페이지 탐색. `Link` 응답 헤더로 다음 페이지 여부 확인
-- 로딩, 빈 목록, 404, 403, 429, 서버 오류, 네트워크 실패, 15초 시간 초과 처리
-- 저장소만 실패하면 프로필과 기존 목록을 유지하고 실패 페이지 재시도
-- 새 검색 시 이전 요청 취소 및 오래된 응답 무시
-- 모바일 레이아웃, 키보드 포커스, 입력 레이블, 상태 안내
+## 실행 및 배포
+
+### 내 컴퓨터에서 실행
+
+압축을 풀고 `index.html`을 브라우저에서 엽니다. 인터넷 연결과 JavaScript가 필요합니다. 브라우저가 로컬 파일의 API 요청을 제한하면 GitHub Pages에 배포하여 사용하세요.
+
+### GitHub Pages에 배포
+
+1. GitHub에서 **Public** 저장소를 만듭니다.
+2. **Add file → Upload files**로 프로젝트 폴더 안의 파일을 업로드하고 커밋합니다. ZIP이나 폴더 자체가 아니라 `index.html`이 저장소 최상위에 오도록 올립니다.
+3. `.nojekyll`도 함께 올립니다. 보이지 않으면 **Add file → Create new file**에서 `.nojekyll`이라는 빈 파일을 만듭니다.
+4. **Settings → Pages**로 이동합니다.
+5. **Source: Deploy from a branch**, **Branch: main**, **Folder: /(root)**를 선택하고 **Save**를 누릅니다. 기본 브랜치 이름이 다르면 실제 브랜치를 선택합니다.
+6. 배포 후 **Visit site**로 접속합니다. 진행 상황은 **Actions** 탭에서 확인할 수 있습니다.
+
+주소 예시: `https://본인아이디.github.io/저장소이름/`
+
+이후 같은 브랜치의 파일을 수정하고 커밋하면 자동으로 다시 배포됩니다. 배포 주소에서 404가 나오면 `index.html` 위치와 Pages의 브랜치·폴더 설정을 확인하세요.
+
+## 사용한 API
+
+GitHub REST API의 공개 엔드포인트를 사용합니다.
+
+| API | 용도 |
+| --- | --- |
+| `GET /users/{username}` | 사용자 프로필 조회 |
+| `GET /users/{username}/repos` | 소유한 공개 저장소 조회 (포크 포함) |
+
+브라우저가 `https://api.github.com`에 요청하고, 응답받은 JSON 데이터를 화면에 표시합니다. 저장소는 최근 업데이트순으로 30개씩 조회합니다.
+
+인증 없는 요청은 일반적으로 IP 기준 시간당 60회로 제한되며 같은 네트워크에서 한도를 공유할 수 있습니다. 최초 검색은 보통 2회, 더 보기는 1회 요청합니다. 제한에 도달하면 재시도 가능 시간을 안내하며 자동으로 반복 요청하지 않습니다.
+
+## 파일 구성
 
 | 파일 | 역할 |
 | --- | --- |
-| `index.html` | 검색 폼과 결과 영역 |
-| `styles.css` | 색상, 카드, 반응형 레이아웃 |
-| `app.js` | API 요청, 오류 처리, 안전한 DOM 생성 |
-| `.nojekyll` | Jekyll 처리 없이 정적 파일 제공 |
+| `index.html` | 검색창과 프로필·저장소 표시 영역 |
+| `styles.css` | 디자인과 반응형 레이아웃 |
+| `app.js` | API 요청, 화면 표시, 오류 처리 |
+| `.nojekyll` | 정적 파일 배포 설정 |
 
-## API 및 요청 제한
+외부 라이브러리나 빌드 도구를 사용하지 않습니다. CSS와 JavaScript는 상대 경로로 연결하여 GitHub Pages의 저장소 하위 주소에서도 사용할 수 있습니다.
 
-사용하는 공개 엔드포인트:
+## 데이터 처리
 
-```text
-GET https://api.github.com/users/{username}
-GET https://api.github.com/users/{username}/repos?type=owner&sort=updated&direction=desc&per_page=30&page=1
-```
+- API 키나 토큰 없이 공개 정보만 조회합니다.
+- 검색한 아이디는 GitHub에 전송되며 별도의 검색 기록을 저장하지 않습니다.
+- API의 문자열은 `textContent`로 표시하고 링크와 이미지 주소를 검사합니다.
+- 새 검색 시 이전 요청을 취소하여 오래된 결과가 표시되지 않도록 처리합니다.
 
-최초 검색은 프로필과 저장소에 각각 한 번씩, 보통 2회 요청합니다. 더 보기는 1회입니다. 입력하는 동안에는 요청하지 않습니다. 전체 저장소를 한꺼번에 가져오지 않으므로 프로필의 전체 저장소 수와 현재 불러온 개수는 다를 수 있습니다. 스타 수는 각 저장소 기준이며 전체 스타 합계는 계산하지 않습니다.
+## 참고 문서
 
-인증 없는 REST API는 일반적으로 **IP 기준 시간당 60회**로 제한됩니다. 같은 네트워크에서 한도를 공유할 수 있으며 별도의 보조 제한도 있습니다. `403`/`429`, `x-ratelimit-remaining`, `x-ratelimit-reset`, `retry-after`를 확인하고 재시도 시각을 안내합니다. 시각 정보가 없으면 최소 1분 대기합니다. 대기 중에는 이 페이지에서 새 API 요청을 보내지 않으며 자동 재시도하지 않습니다. 안내 시각이 지나면 검색 또는 재시도 버튼을 눌러 주세요.
+- [GitHub 사용자 API](https://docs.github.com/en/rest/users/users#get-a-user)
+- [GitHub 저장소 API](https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user)
+- [API 요청 제한](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)
+- [GitHub Pages 배포 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
-## 안전한 DOM과 개인정보
-
-- 사용자 이름은 형식을 검사하고 URL 경로에 `encodeURIComponent`로 넣습니다.
-- API의 이름/소개/설명은 `textContent`로 표시합니다. `innerHTML`, `eval`, 외부 스크립트를 사용하지 않습니다.
-- 링크는 HTTPS `github.com`, 사진은 HTTPS `avatars.githubusercontent.com` 또는 `github.com`만 허용합니다. 새 창 링크에는 `noopener noreferrer`를 적용합니다.
-- API 토큰, 인증 헤더, 로그인, 쿠키 전송, 브라우저 저장소를 사용하지 않습니다.
-- 검색 시 GitHub에 사용자 이름과 일반 네트워크 정보가 전달됩니다. 데이터는 페이지 메모리에만 보관하고 새로고침하면 초기화됩니다.
-- CSS/JS는 `./styles.css`, `./app.js` 상대 경로여서 프로젝트 하위 경로 배포에서도 동작합니다. 외부 폰트나 라이브러리 의존성은 없습니다.
-
-## 직접 확인하기
-
-1. `octocat` 검색: 프로필/저장소/스타/링크 확인.
-2. 공백·잘못된 기호: 요청 없이 입력 오류 확인.
-3. 존재하지 않는 아이디: 404 안내 확인.
-4. 저장소 30개 초과 계정: 더 보기와 목록 유지 확인.
-5. 빠르게 다른 사용자 검색: 마지막 사용자의 결과만 표시되는지 확인.
-6. 개발자 도구에서 오프라인으로 바꾼 뒤 검색: 연결 오류 확인.
-7. 모바일 너비(360px), 키보드 Tab/Enter로 검색과 링크 사용 확인.
-
-실제 요청을 반복해서 제한에 도달시키지는 마세요. 제한 동작은 개발 시 모의 응답으로 검사하는 편이 좋습니다.
-
-## 학습 순서
-
-`index.html`의 id → `app.js`의 이벤트 연결 → `request()`의 fetch → `renderProfile()`/`renderRepository()`의 DOM 생성 순으로 읽어 보세요. 색상은 `styles.css`의 `:root`에서 변경할 수 있습니다.
-
-## 공식 문서
-
-- [사용자 API](https://docs.github.com/en/rest/users/users#get-a-user)
-- [사용자 저장소 API](https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user)
-- [REST API 요청 제한](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)
-- [GitHub Pages 배포 설정](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-
-이 프로젝트는 GitHub와 제휴하지 않은 학습용 프로젝트입니다.
+GitHub 공식 서비스가 아닌 API 활용 학습용 프로젝트입니다.

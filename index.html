@@ -9,33 +9,34 @@
   <script src="./app.js" defer></script>
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="./index.html"><span class="brand-icon" aria-hidden="true">◈</span> GitHub Lens</a><span class="badge">PUBLIC PROFILE EXPLORER</span></header>
+  <header class="topbar"><a class="brand" href="./index.html"><span class="brand-icon" aria-hidden="true">◈</span> GitHub Lens</a><span class="badge">사용자 프로필 · 공개 저장소</span></header>
   <main>
     <section class="hero" aria-labelledby="title">
-      <p class="eyebrow">개발자의 세계를 조금 더 가까이</p>
-      <h1 id="title">아이디 하나로,<br><span>GitHub를 한눈에.</span></h1>
-      <p class="intro">프로필부터 공개 저장소까지.<br class="mobile-break"> 궁금한 개발자의 작업을 살펴보세요.</p>
+      <p class="eyebrow">GitHub 사용자 탐색</p>
+      <h1 id="title">프로필과 프로젝트를<br><span>한눈에 살펴보세요.</span></h1>
+      <p class="intro">GitHub 아이디로 프로필과<br class="mobile-break"> 공개 저장소, 스타 수를 확인하세요.</p>
       <form id="search-form" role="search" novalidate>
         <label for="username">GitHub 사용자 이름</label>
         <div class="search-row"><span aria-hidden="true">@</span><input id="username" name="username" placeholder="예: octocat" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="39" required aria-describedby="search-help"><button type="submit">사용자 검색</button></div>
-        <p id="search-help">프로필 주소의 마지막 부분을 입력하세요. 예: github.com/<strong>octocat</strong></p>
+        <p id="search-help">github.com/<strong>octocat</strong>에서 <strong>octocat</strong> 부분만 입력하세요.</p>
       </form>
-      <div class="examples"><span>먼저 둘러보기</span><button type="button" data-user="octocat">octocat</button><button type="button" data-user="torvalds">torvalds</button></div>
+      <div class="examples"><span>예시 검색</span><button type="button" data-user="octocat">octocat</button><button type="button" data-user="torvalds">torvalds</button></div>
     </section>
-    <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true">사용자 이름을 검색하면 공개 정보를 표시합니다.</p>
+    <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></p>
     <div id="results" hidden>
       <section id="profile" class="profile card" aria-label="사용자 프로필"></section>
       <section class="repositories" aria-labelledby="repos-title">
-        <div class="section-heading"><div><p class="eyebrow">REPOSITORIES</p><h2 id="repos-title">공개 저장소</h2></div><span>최근 업데이트순</span></div>
+        <div class="section-heading"><h2 id="repos-title">공개 저장소</h2><span>최근 업데이트순</span></div>
         <p id="repo-count" class="muted"></p>
         <p id="repo-status" class="status" role="status" aria-live="polite"></p>
         <ul id="repo-list" class="repo-list"></ul>
         <button id="load-more" class="secondary" type="button" hidden>저장소 더 보기</button>
       </section>
     </div>
-    <section id="empty" class="empty card"><span aria-hidden="true">⌘</span><h2>다음 발견은 검색에서 시작됩니다</h2><p>관심 있는 개발자의 프로필과 프로젝트를 만나보세요.</p><div class="feature-tags"><span>공개 프로필</span><span>저장소 탐색</span><span>스타 수 확인</span></div></section>
+    <section id="empty" class="empty card"><h2>어떤 개발자가 궁금한가요?</h2><p>아이디를 입력하거나 예시를 선택해 보세요.</p><div class="feature-tags"><span>공개 프로필</span><span>저장소 탐색</span><span>스타 수 확인</span></div></section>
     <noscript><p class="status error">검색하려면 브라우저에서 JavaScript를 활성화해 주세요.</p></noscript>
   </main>
-  <footer><span>GitHub Lens · 학습용 프로젝트</span><span>GitHub 공식 서비스가 아닙니다 · 공개 데이터만 사용</span></footer>
+  <footer><span>GitHub Lens · 데이터 제공: GitHub REST API</span><span>GitHub 공식 서비스가 아닙니다 · 공개 데이터만 사용</span></footer>
 </body>
 </html>
+
